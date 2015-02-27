@@ -1,0 +1,20 @@
+<html ng-app="AppOne">
+<head>
+	<title>SuperEkstraMapy</title>
+
+<!--angularjs and ui-router -->
+		<script  src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/ui-router/release/angular-ui-router.js"></script>
+<!--googlemaps-->
+	<script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+<!--main script-->
+	<script src="src/appone.js"></script>
+<!--CSS req by maps -->
+	<link rel="stylesheet" href="src/style.css">
+<!--That silly thing to ui-router-->
+	<base href="/">
+</head>
+<body>
+	<div ui-view></div>
+</body>
+</html>

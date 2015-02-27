@@ -1,0 +1,21 @@
+{
+  "name": "bls_front_patronat",
+  "version": "0.0.0",
+  "authors": [
+    "witkowsky <witos.footbagos@gmail.com>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ui-router": "~0.2.13"
+  }
+}
