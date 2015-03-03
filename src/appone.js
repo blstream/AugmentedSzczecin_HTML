@@ -5,6 +5,7 @@ AppOne.controller('FirstController',['$scope','$log', function($scope,$log){
           var mapOptions = {
               center: { lat: 53.428867, lng: 14.556497},
               zoom: 10,
+			  scaleControl: true,
               mapTypeId:google.maps.MapTypeId.ROADMAP
            };
      //CREATE NEW MAP
@@ -31,7 +32,7 @@ AppOne.controller('FirstController',['$scope','$log', function($scope,$log){
     //STARTER MARKER
         var myLaTlng = new google.maps.LatLng(53.428867,14.556497);
         var starterMarker = placeMarker(myLaTlng);
-   //END OF CONTROLLER
+   //END OF CONTROLLER   
 }]);
 
 AppOne.config(function ($stateProvider, $urlRouterProvider){
