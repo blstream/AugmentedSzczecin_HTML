@@ -11,7 +11,7 @@ AppOne.controller('FirstController',['$scope','$log', function($scope,$log){
         var mapOptions = {
             zoom:10,
             center: center,
-            scale: true
+            scaleControl: true
         };
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         directionsDisplay.setMap(map);
