@@ -1,7 +1,7 @@
 <html ng-app="AppOne">
 <head>
 	<title>SuperEkstraMapy</title>
-
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <!--angularjs and ui-router -->
 		<script  src="bower_components/angular/angular.js"></script>
 		<script src="bower_components/ui-router/release/angular-ui-router.js"></script>
@@ -13,8 +13,16 @@
 	<link rel="stylesheet" href="src/style.css">
 <!--That silly thing to ui-router-->
 	<base href="/">
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+
 </head>
-<body>
+
+<body ng-controller="FirstController">
+
+	<div id='map-canvas'></div>
+	<button ng-click="chooseRoute(0)">BramaSportowa - Zamek</button>
+	<button ng-click="chooseRoute(1)">Wały - Błonia</button>
 	<div ui-view></div>
+
 </body>
 </html>
