@@ -9,9 +9,12 @@ AppOne.controller('FirstController',['$scope','$log', function($scope,$log){
         directionsDisplay = new google.maps.DirectionsRenderer();
         var center = new google.maps.LatLng(53.425175, 14.550454);
         var mapOptions = {
+            streetViewControl: false,
+            mapTypeControl: false,
+            panControl: false,
             zoom:10,
             center: center,
-            scaleControl: true
+            scaleControl: true,
         };
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         directionsDisplay.setMap(map);
