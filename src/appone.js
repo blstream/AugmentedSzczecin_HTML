@@ -12,7 +12,7 @@ AppOne.controller('FirstController',['$scope','$log', function($scope,$log){
             streetViewControl: false,
             mapTypeControl: false,
             panControl: false,
-            zoom:10,
+            zoom:15,
             center: center,
             scaleControl: true,
         };
@@ -24,7 +24,7 @@ AppOne.controller('FirstController',['$scope','$log', function($scope,$log){
         });
 
         //ARRAY of MARKERS
-        var poi= [];
+        var poiList= [];
         var points= [
             ['katedra', 53.424736, 14.556168],
             ['kaskada', 53.428271, 14.551955],
@@ -37,18 +37,19 @@ AppOne.controller('FirstController',['$scope','$log', function($scope,$log){
             ['szpital na unii', 53.448693, 14.504945],
             ['deptak', 53.429926, 14.544256]
         ]
-        for(var i= 0; i<points.length; i++){
-            var wspolrzedne= new google.maps.LatLng(
-                points[i][1], points[i][2]
+
+        points.forEach(function(entry){
+            var coordinates= new google.maps.LatLng(
+                entry[1], entry[2]
             );
-            var pinezka= new google.maps.Marker({
-                position: wspolrzedne,
+            poiMarker= new google.maps.Marker({
+                position: coordinates,
                 map: map
             });
-            poi.push(pinezka);
-        }
+            poiList.push(poiMarker);
+        });
         //MarkerClusterer
-        var markerCluster = new MarkerClusterer(map, poi);
+        var markerCluster = new MarkerClusterer(map, poiList);
     }
     google.maps.event.addDomListener(window, 'load', initialize);
 
