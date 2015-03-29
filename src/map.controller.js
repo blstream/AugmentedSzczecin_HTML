@@ -1,11 +1,11 @@
-var AppOne = angular.module('AppOne',['ui.router']);
-
-AppOne.controller('FirstController',['$scope','$log', function($scope,$log){
+AugmentedSzczecin.controller('MapController',['$scope', function($scope){
     //MAP
     var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
     var map;
-    function initialize() {
+    var handler = document.getElementById('map-canvas');
+
+    function initialize(mapHandler) {
         directionsDisplay = new google.maps.DirectionsRenderer();
         var center = new google.maps.LatLng(53.425175, 14.550454);
         var mapOptions = {
@@ -14,9 +14,9 @@ AppOne.controller('FirstController',['$scope','$log', function($scope,$log){
             panControl: false,
             zoom:15,
             center: center,
-            scaleControl: true,
+            scaleControl: true
         };
-        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        map = new google.maps.Map(mapHandler, mapOptions);
         directionsDisplay.setMap(map);
 
         google.maps.event.addListener(map, 'rightclick', function(event) {
@@ -51,7 +51,7 @@ AppOne.controller('FirstController',['$scope','$log', function($scope,$log){
         //MarkerClusterer
         var markerCluster = new MarkerClusterer(map, poiList);
     }
-    google.maps.event.addDomListener(window, 'load', initialize);
+    google.maps.event.addDomListener(window, 'load', initialize(handler));
 
     //Functions
     function placeMarker(location) {
@@ -97,12 +97,3 @@ AppOne.controller('FirstController',['$scope','$log', function($scope,$log){
         });
     }
 }]);
-
-AppOne.config(function ($stateProvider, $urlRouterProvider){
-    $urlRouterProvider.otherwise("/maps");
-    $stateProvider.state('maps',{
-        url: "/maps",
-        templateUrl: "src/maps.html",
-        controller: "FirstController"
-    })
-});
