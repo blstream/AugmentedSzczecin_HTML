@@ -1,3 +1,9 @@
-<button ng-click="chooseRoute(0)">BramaSportowa - Zamek</button>
-<button ng-click="chooseRoute(1)">Wały - Błonia</button>
+Skąd
+<select id="orgin" ng-model="monuments[0]" ng-options="monument.name for monument in monuments">
+</select>
+Dokąd
+<select id="destination">
+    <option ng-repeat="monument in monuments" value="{{[monument.lat,monument.lng]}}">{{monument.name}}</option>
+</select>
+<button>W drogę</button>
 <div id="map-canvas"></div>

@@ -66,28 +66,33 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
         infowindow.open(map,marker);
     }
 
-    $scope.chooseRoute = function(route){
-
-        var bramaPortowa = new google.maps.LatLng(53.425060, 14.550462);
-        var zamek = new google.maps.LatLng(53.426220, 14.560521);
-        var walyChrobrego = new google.maps.LatLng(53.428528, 14.563938);
-        var jasneBlonia = new google.maps.LatLng(53.440721, 14.540001);
-
-        switch (route) {
-            case 0:
-                calcRoute(bramaPortowa,zamek);
-                break;
-            case 1:
-                calcRoute(walyChrobrego,jasneBlonia)
-                break;
+    $scope.monuments = [
+        {
+        'name': 'Brama Portowa',
+        'lat': 53.425060,
+        'lng': 14.550462
+        },
+        {
+        'name': 'Zamek Książąt Pomorskich',
+        'lat': 53.426220,
+        'lng': 14.560521
+        },
+        {
+        'name': 'Wały Chrobrego',
+        'lat': 53.428528,
+        'lng': 14.563938
+        },
+        {
+        'name': 'Jasne Błonia',
+        'lat': 53.440721,
+        'lng': 14.540001
         }
-    }
+    ];
 
-    function calcRoute (startLatLng, endLatLng) {
-
+    $scope.calcRoute = function (origin, destination) {
         var request = {
-            origin:startLatLng,
-            destination:endLatLng,
+            origin: new google.maps.LatLng(origin.lat, origin.lng),
+            destination: new google.maps.LatLng(destination.lat, destination.lng),
             travelMode: google.maps.TravelMode.DRIVING
         };
         directionsService.route(request, function(response, status) {
@@ -95,5 +100,5 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
                 directionsDisplay.setDirections(response);
             }
         });
-    }
+    };
 }]);
