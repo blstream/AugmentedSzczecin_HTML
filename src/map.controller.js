@@ -39,7 +39,7 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
         ]
 
         points.forEach(function(entry){
-            var coordinates= new google.maps.LatLng(
+            var coordinates = new google.maps.LatLng(
                 entry[1], entry[2]
             );
             poiMarker= new google.maps.Marker({
@@ -96,9 +96,13 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
             travelMode: google.maps.TravelMode.DRIVING
         };
         directionsService.route(request, function(response, status) {
-            if (status == google.maps.DirectionsStatus.OK) {
+            if (status === google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(response);
             }
         });
+    };
+
+    $scope.getValue = function(Id){
+        return document.getElementById(Id).value;
     };
 }]);

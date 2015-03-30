@@ -1,9 +1,10 @@
 Skąd
-<select id="orgin" ng-model="monuments[0]" ng-options="monument.name for monument in monuments">
+<select id="origin">
+    <option ng-repeat="monument in monuments" value="{{$index}}">{{monument.name}}</option>
 </select>
 Dokąd
 <select id="destination">
-    <option ng-repeat="monument in monuments" value="{{[monument.lat,monument.lng]}}">{{monument.name}}</option>
+    <option ng-repeat="monument in monuments" value="{{$index}}">{{monument.name}}</option>
 </select>
-<button>W drogę</button>
+<button ng-click = "calcRoute(monuments[getValue('origin')],monuments[getValue('destination')])">W drogę</button>
 <div id="map-canvas"></div>
