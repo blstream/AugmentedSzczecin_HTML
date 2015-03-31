@@ -9,8 +9,8 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
         directionsDisplay = new google.maps.DirectionsRenderer();
         var center = new google.maps.LatLng(53.425175, 14.550454);
         var mapOptions = {
-            streetViewControl: false,
-            mapTypeControl: false,
+            streetViewControl: true,
+            mapTypeControl: true,
             panControl: false,
             zoom:15,
             center: center,
