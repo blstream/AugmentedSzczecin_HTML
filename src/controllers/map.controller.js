@@ -15,8 +15,8 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
          * @type {Object}
          */
         var mapOptions = {
-            streetViewControl: false,
-            mapTypeControl: false,
+            streetViewControl: true,
+            mapTypeControl: true,
             panControl: false,
             zoom:15,
             center: center,

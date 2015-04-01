@@ -14,4 +14,3 @@ AugmentedSzczecin.config(function ($stateProvider, $urlRouterProvider){
         controller: 'MapController'
     });
 });
-
