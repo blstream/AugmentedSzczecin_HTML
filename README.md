@@ -25,12 +25,10 @@ Once installed, enter the following command Git:
 ### Step 2: INSTALLATION
  * The application relies upon various node.js tools, such as Bower. install nodejs with bower (Installation must be in the folder where you find the cloned repo):
 
-* Install bower</br>
-	```npm install –g bower –save```
-* Install npm</br>
-```
-npm install
-	```
+* Install bower  
+```npm install –g bower –save```
+* Install npm  
+```npm install```
 
 ### Step 3: RUNNING LOCALLY
 * Open the folder that you have install nginx and find the configuration file (nginx.conf).
