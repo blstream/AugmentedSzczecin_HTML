@@ -1,17 +1,17 @@
 {
-  "name": "bls_front_patronat",
-  "version": "0.0.0",
-  "description": "Augmented Szczecin Patronage 2015 HTML5 client </br> <ol> <li>Pobranie repozytorium </li> <li>Pobranie i zainstalowanie nginxa </li> <li>Ustawienie ścieżki w pliku nginx.conf do repozytorium </li> <li>Uruchomienie strony w przeglądarce</li> </ol> </br>",
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "Augmented Szczecin Patronage 2015 HTML5 client </br>\r <ol>\r <li>Pobranie repozytorium </li>\r <li>Pobranie i zainstalowanie nginxa </li>\r <li>Ustawienie ścieżki w pliku nginx.conf do repozytorium </li>\r <li>Uruchomienie strony w przeglądarce</li>\r </ol>",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "BSD-2-Clause",
   "repository": {
     "type": "git",
     "url": "https://github.com/blstream/AugmentedSzczecin_HTML.git"
   },
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/blstream/AugmentedSzczecin_HTML/issues"
   },

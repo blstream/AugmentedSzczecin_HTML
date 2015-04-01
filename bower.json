@@ -4,9 +4,6 @@
   "authors": [
     "witkowsky <witos.footbagos@gmail.com>"
   ],
-  "moduleType": [
-    "amd"
-  ],
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -16,6 +13,8 @@
     "tests"
   ],
   "dependencies": {
-    "ui-router": "~0.2.13"
-  }
+    "ui-router": "~0.2.13",
+    "angularjs": "~1.3.15"
+  },
+  "private": true
 }
