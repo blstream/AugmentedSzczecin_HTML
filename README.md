@@ -9,6 +9,7 @@ Application possibilities:
 - The possibility of showing a route to the location (2D route and possibly also in street view).  
 - The ability of watching through a map of Szczecin with marked places.  
 - Filtering the types of objects displayed on the map / from street view.  
+
 Augmented Szczecin will be free and open to anyone interested in different places in the Szczecin. The application is based on Javascript and AngularJS. Augmented Szczecin requires to operate one of the popular browsers for the end user. (WebBrowsers:Chrome 28, Firefox 24,Opera 15,Internet Explorer). This app was designed by a group of front-end in the patronage program.
 
 ## PREQUITES:
