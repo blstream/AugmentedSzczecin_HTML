@@ -6,6 +6,7 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
     var handler = document.getElementById('map-canvas');
     /**
      * Inicjalizacja mapy, centrowanie jej, oraz wyswietlanie tras
+     * 
      */
     function initialize(mapHandler) {
         directionsDisplay = new google.maps.DirectionsRenderer();
