@@ -27,7 +27,7 @@ Once installed, enter the following command Git:
  * The application relies upon various node.js tools, such as Bower. install nodejs with bower (Installation must be in the folder where you find the cloned repo):
 
 * Install bower  
-```npm install –g bower –save```
+```npm install –g bower```
 * Install npm  
 ```npm install```
 
