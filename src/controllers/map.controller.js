@@ -1,13 +1,19 @@
 AugmentedSzczecin.controller('MapController',['$scope', function($scope){
-    //MAP
+
     var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
     var map;
     var handler = document.getElementById('map-canvas');
-
+    /**
+     * Inicjalizacja mapy, centrowanie jej, oraz wyswietlanie tras
+     */
     function initialize(mapHandler) {
         directionsDisplay = new google.maps.DirectionsRenderer();
         var center = new google.maps.LatLng(53.425175, 14.550454);
+        /**
+         * Opcje mapy
+         * @type {Object}
+         */
         var mapOptions = {
             streetViewControl: false,
             mapTypeControl: false,
@@ -16,15 +22,31 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
             center: center,
             scaleControl: true
         };
+        /**
+         * Wysiwietlanie mapy wraz z jej opcjami
+         * @type {google}
+         */
         map = new google.maps.Map(mapHandler, mapOptions);
         directionsDisplay.setMap(map);
 
+        /**
+         * Funkcja stawiajaca Pinezke na mapie 
+         * @param  {[object} event) {placeMarker(event.latLng);}  - ppm stawia na mapie Pinezke
+         * @return {[type]}        - Pinezka pojawia sie w wyznaczonym przez nas miejscu
+         */
         google.maps.event.addListener(map, 'rightclick', function(event) {
             placeMarker(event.latLng);
         });
 
-        //ARRAY of MARKERS
+        /**
+         * @todo poiList - tablica z punktami poi 
+         * @type {Array}
+         */
         var poiList= [];
+        /**
+         * punkty poi wyznaczone, do czasu uzyskania poiList
+         * @type {Array}
+         */
         var points= [
             ['katedra', 53.424736, 14.556168],
             ['kaskada', 53.428271, 14.551955],
@@ -37,7 +59,10 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
             ['szpital na unii', 53.448693, 14.504945],
             ['deptak', 53.429926, 14.544256]
         ]
-
+       /**
+        * Klastrowanie, zbieranie wiekszej ilosci punktow poi w jeden
+        * @param  {google} entry){var coordinates  - cordy punktow poi
+        */
         points.forEach(function(entry){
             var coordinates = new google.maps.LatLng(
                 entry[1], entry[2]
@@ -48,18 +73,28 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
             });
             poiList.push(poiMarker);
         });
-        //MarkerClusterer
+        /**
+         * Tworzenie Punktu klastwoania, z wyswietlanie ilosci punktow poi w nim
+         * @type {MarkerClusterer}
+         */
         var markerCluster = new MarkerClusterer(map, poiList);
     }
     google.maps.event.addDomListener(window, 'load', initialize(handler));
 
-    //Functions
+    /**
+     * Pinezka 
+     * @param  {object} location - okreslenie lokacji w ktorej postawiona bedzie pinezka
+     * @return {google}          - wyswietlenie pinezkina mapie
+     */
     function placeMarker(location) {
         var marker = new google.maps.Marker({
             position: location,
             map: map
         });
-
+        /**
+         * Okienko informacyjne z coordami
+         * @type {google}
+         */
         var infowindow = new google.maps.InfoWindow({
             content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
         });
@@ -88,7 +123,12 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
         'lng': 14.540001
         }
     ];
-
+    /**
+     * Wyznaczanie trasy 
+     * @param  {object} origin      - punkt poczatkowy naszej trasy
+     * @param  {object} destination - punkt koncowy naszej trasy
+     * @return {google}             - wyznacza najkrotsza trase pomiedzy punktami
+     */
     $scope.calcRoute = function (origin, destination) {
         var request = {
             origin: new google.maps.LatLng(origin.lat, origin.lng),
