@@ -6,7 +6,7 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
     var handler = document.getElementById('map-canvas');
     /**
      * Inicjalizacja mapy, centrowanie jej, oraz wyswietlanie tras
-     * 
+     *
      */
     function initialize(mapHandler) {
         directionsDisplay = new google.maps.DirectionsRenderer();
@@ -31,7 +31,7 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
         directionsDisplay.setMap(map);
 
         /**
-         * Funkcja stawiajaca Pinezke na mapie 
+         * Funkcja stawiajaca Pinezke na mapie
          * @param  {[object} event) {placeMarker(event.latLng);}  - ppm stawia na mapie Pinezke
          * @return {[type]}        - Pinezka pojawia sie w wyznaczonym przez nas miejscu
          */
@@ -40,7 +40,7 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
         });
 
         /**
-         * @todo poiList - tablica z punktami poi 
+         * @todo poiList - tablica z punktami poi
          * @type {Array}
          */
         var poiList= [];
@@ -83,7 +83,7 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
     google.maps.event.addDomListener(window, 'load', initialize(handler));
 
     /**
-     * Pinezka 
+     * Pinezka
      * @param  {object} location - okreslenie lokacji w ktorej postawiona bedzie pinezka
      * @return {google}          - wyswietlenie pinezkina mapie
      */
@@ -125,7 +125,7 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
         }
     ];
     /**
-     * Wyznaczanie trasy 
+     * Wyznaczanie trasy
      * @param  {object} origin      - punkt poczatkowy naszej trasy
      * @param  {object} destination - punkt koncowy naszej trasy
      * @return {google}             - wyznacza najkrotsza trase pomiedzy punktami

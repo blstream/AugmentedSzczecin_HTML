@@ -9,3 +9,9 @@ AugmentedSzczecin.config(function ($stateProvider, $urlRouterProvider){
         controller: 'MapController'
     });
 });
+
+// AugmentedSzczecin.run(function ($rootScope){
+//
+// $rootScope.placeMaker = function(){
+// }
+// });
