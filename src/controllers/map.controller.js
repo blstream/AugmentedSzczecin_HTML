@@ -21,7 +21,15 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
             panControl: false,
             zoom:15,
             center: center,
-            scaleControl: true
+            scaleControl: true,
+            //cleaning map of default POIs
+            styles: [{
+                featureType: "poi",
+                elementType: "all",
+                stylers: [{
+                    visibility: "off"
+                }]
+            }]
         };
         /**
          * Wysiwietlanie mapy wraz z jej opcjami
