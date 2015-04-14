@@ -30,6 +30,8 @@ Once installed, enter the following command Git:
 ```npm install –g bower```
 * Install npm  
 ```npm install```
+* Install AngularJS  
+```bower install angularjs```
 
 ### Step 3: RUNNING LOCALLY
 * Open the folder that you have install nginx and find the configuration file (nginx.conf).
@@ -39,7 +41,7 @@ Once installed, enter the following command Git:
             root   „Your path with aplication”;
             index  index.html index.htm;
 * Then start local hosting with this command:  
-```Nginx start```
+```start nginx```
 
 ### Step 4: RUNNING THE APP 
 
@@ -49,6 +51,6 @@ Once installed, enter the following command Git:
 ## DISTRIBUTION OF FILES
 * All files downloaded from the Gita and added depending (eg. Bower) should be in one 
 folder, which should be set in the configuration file Nginx.
-[GIT download link]:https://github.com/
+[GIT download link]:http://git-scm.com/downloads
 [NODEJS download link]:https://nodejs.org/
 [NGINX download link]:http://nginx.org/en/download.html
