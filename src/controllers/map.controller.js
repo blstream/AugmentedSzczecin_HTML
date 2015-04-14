@@ -1,4 +1,13 @@
-AugmentedSzczecin.controller('MapController',['$scope', function($scope){
+AugmentedSzczecin.controller('MapController',['$scope', '$http', function($scope, $http){
+
+    $http.get('http://private-anon-1813a5f7c-patronage2015.apiary-mock.com/pois').
+        success(function(data, status, headers, config){
+            $scope.jsonList= data;
+        }).
+        error(function(data,status, headers, config){
+
+        });
+
 
     var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
@@ -87,7 +96,7 @@ AugmentedSzczecin.controller('MapController',['$scope', function($scope){
          * Tworzenie Punktu klastwoania, z wyswietlanie ilosci punktow poi w nim
          * @type {MarkerClusterer}
          */
-        var markerCluster = new MarkerClusterer(map, poiList);
+       var markerCluster = new MarkerClusterer(map, poiList);
     }
     google.maps.event.addDomListener(window, 'load', initialize(handler));
 
