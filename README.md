@@ -30,8 +30,8 @@ Once installed, enter the following command Git:
 ```npm install –g bower```
 * Install npm  
 ```npm install```
-* Install AngularJS and UI-Router
-```bower install
+* Install AngularJS and UI-Router  
+```bower install```
 
 ### Step 3: RUNNING LOCALLY
 * Open the folder that you have install nginx and find the configuration file (nginx.conf).
