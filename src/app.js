@@ -5,7 +5,7 @@ AugmentedSzczecin.config(function ($stateProvider, $urlRouterProvider){
     $stateProvider
         .state('map',{
         url: "/map",
-        templateUrl: "src/templates/map.html",
+        templateUrl: "src/modules/maps/maps.tmpl.html",
         controller: 'MapController'
     });
 });
