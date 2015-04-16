@@ -27,18 +27,18 @@ Once installed, enter the following command Git:
  * The application relies upon various node.js tools, such as Bower. install nodejs with bower (Installation must be in the folder where you find the cloned repo):
 
 * Install bower  
-```npm install ñg bower```
+```npm install ‚Äìg bower```
 * Install npm  
 ```npm install```
-* Install AngularJS  
-```bower install angularjs```
+* Install AngularJS and UI-Router
+```bower install
 
 ### Step 3: RUNNING LOCALLY
 * Open the folder that you have install nginx and find the configuration file (nginx.conf).
 * Change the following line of code to your site to locate the application:
 
         location / 
-            root   ÑYour path with aplicationî;
+            root   ‚ÄûYour path with aplication‚Äù;
             index  index.html index.htm;
 * Then start local hosting with this command:  
 ```start nginx```
@@ -46,7 +46,7 @@ Once installed, enter the following command Git:
 ### Step 4: RUNNING THE APP 
 
 * Run the aplication in Web browser with your local ip adress path:  
-```http://îYour local IP adressî/#/map```
+```http://‚ÄùYour local IP adress‚Äù/#/map```
 
 ## DISTRIBUTION OF FILES
 * All files downloaded from the Gita and added depending (eg. Bower) should be in one 
