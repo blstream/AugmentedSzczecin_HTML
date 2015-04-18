@@ -1,13 +1,13 @@
-AugmentedSzczecin.controller('MapController',['$scope', '$http', function($scope, $http){
+AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($scope,apiService ){
 
-    $http.get('http://private-anon-1813a5f7c-patronage2015.apiary-mock.com/pois').
+   /* $http.get('http://private-anon-1813a5f7c-patronage2015.apiary-mock.com/pois').
         success(function(data, status, headers, config){
             $scope.jsonList= data;
         }).
         error(function(data,status, headers, config){
 
-        });
-
+        }); */
+   $scope.getPoiList=  apiService.getPoi;
 
     var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
