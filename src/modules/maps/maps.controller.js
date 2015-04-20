@@ -1,5 +1,5 @@
 AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($scope,apiService ){
-    $scope.pois = [1, 2];
+    $scope.pois = [];
 
     apiService.getPois()
         .success(function(data, status, headers, config){
@@ -66,6 +66,8 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
          * punkty poi wyznaczone, do czasu uzyskania poiList
          * @type {Array}
          */
+        var points = [];
+/*
         var points= [
             ['katedra', 53.424736, 14.556168],
             ['kaskada', 53.428271, 14.551955],
@@ -78,6 +80,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
             ['szpital na unii', 53.448693, 14.504945],
             ['deptak', 53.429926, 14.544256]
         ]
+       */
        /**
         * Klastrowanie, zbieranie wiekszej ilosci punktow poi w jeden
         * @param  {google} entry){var coordinates  - cordy punktow poi
@@ -119,7 +122,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         });
         infowindow.open(map,marker);
     }
-
+/*
     $scope.monuments = [
         {
         'name': 'Brama Portowa',
@@ -141,7 +144,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         'lat': 53.440721,
         'lng': 14.540001
         }
-    ];
+    ];*/
     /**
      * Wyznaczanie trasy
      * @param  {object} origin      - punkt poczatkowy naszej trasy
@@ -149,9 +152,11 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
      * @return {google}             - wyznacza najkrotsza trase pomiedzy punktami
      */
     $scope.calcRoute = function (origin, destination) {
+        console.log(origin);
+        console.log(destination);
         var request = {
-            origin: new google.maps.LatLng(origin.lat, origin.lng),
-            destination: new google.maps.LatLng(destination.lat, destination.lng),
+            origin: new google.maps.LatLng(origin.location.latitude, origin.location.longitude),
+            destination: new google.maps.LatLng(destination.location.latitude, destination.location.longitude),
             travelMode: google.maps.TravelMode.DRIVING
         };
         directionsService.route(request, function(response, status) {

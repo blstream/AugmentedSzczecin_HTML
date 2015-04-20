@@ -1,10 +1,10 @@
 Start point
 <select id="origin">
-    <option ng-repeat="monument in monuments" value="{{$index}}">{{monument.name}}</option>
+    <option ng-repeat="poi in pois" value="{{$index}}">{{poi.name}}</option>
 </select>
 End point
 <select id="destination">
-    <option ng-repeat="monument in monuments" value="{{$index}}">{{monument.name}}</option>
+    <option ng-repeat="poi in pois" value="{{$index}}">{{poi.name}}</option>
 </select>
-<button ng-click = "calcRoute(monuments[getValue('origin')],monuments[getValue('destination')])">Go</button>
+<button ng-click = "calcRoute(pois[getValue('origin')],pois[getValue('destination')])">Go</button>
 <div id="map-canvas"></div>
