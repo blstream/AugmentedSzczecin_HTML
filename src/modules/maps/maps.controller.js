@@ -1,12 +1,15 @@
 AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($scope,apiService ){
     $scope.pois = [];
 
+    /** get all available pois from server and keep in context */
     apiService.getPois()
         .success(function(data, status, headers, config){
+            // we need remember, 'pois' can be accessible after a while
+            // outside the function
             $scope.pois = data;
         })
         .error(function(data, status, headers, config){
-            //here will appear Error Handling someday...
+            //@TODO: here will appear Error Handling someday...
         });
 
     var directionsDisplay;
@@ -152,8 +155,6 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
      * @return {google}             - wyznacza najkrotsza trase pomiedzy punktami
      */
     $scope.calcRoute = function (origin, destination) {
-        console.log(origin);
-        console.log(destination);
         var request = {
             origin: new google.maps.LatLng(origin.location.latitude, origin.location.longitude),
             destination: new google.maps.LatLng(destination.location.latitude, destination.location.longitude),
