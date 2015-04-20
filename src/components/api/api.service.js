@@ -5,13 +5,6 @@ AugmentedSzczecin.service('apiService', function($http){
     that.poisUri = apiLocation + 'pois';
 
     that.getPois = function () {
-        $http.get(that.poisUri)
-            .success(function(data, status, headers, config){
-                return data;
-            })
-            .error(function(data, status, headers, config){
-                return 'Error occured'
-                //here will appear Error Handling someday...
-            });
+        return $http.get(that.poisUri)
     };
 });
