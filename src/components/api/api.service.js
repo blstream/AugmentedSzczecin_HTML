@@ -16,6 +16,6 @@ AugmentedSzczecin.service('apiService', function($http){
      * @memberof apiService
      */
     that.getPois = function () {
-        return $http.get(that.poisUri)
+        return $http.get(poisUri)
     };
 });
