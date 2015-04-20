@@ -7,7 +7,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         error(function(data,status, headers, config){
 
         }); */
-   $scope.getPoiList=  apiService.getPoi;
+   $scope.pois =  apiService.pois;
 
     var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
