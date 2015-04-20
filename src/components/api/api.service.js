@@ -4,11 +4,11 @@ AugmentedSzczecin.service('apiService', function($http){
 
     that.pois = [];
 
-    $http.get(apiLocation).
-        success(function(data, status, headers, config){
+    $http.get(apiLocation)
+        .success(function(data, status, headers, config){
            that.pois = data;
-        }).
-        error(function(data, status, headers, config){
+        })
+        .error(function(data, status, headers, config){
             //here will appear Error Handling someday...
         });
 });
