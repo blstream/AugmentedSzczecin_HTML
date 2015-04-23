@@ -56,6 +56,7 @@ AugmentedSzczecin.controller('MapController',['$scope', '$http', function($scope
         google.maps.event.addListener(map, 'rightclick', function(event) {
             placeMarker(event.latLng);
         });
+google.maps.event.addListener(map, "rightclick",function(event){showContextMenu(event.latLng);});
 
         /**
          * @todo poiList - tablica z punktami poi
@@ -99,6 +100,57 @@ AugmentedSzczecin.controller('MapController',['$scope', '$http', function($scope
        var markerCluster = new MarkerClusterer(map, poiList);
     }
     google.maps.event.addDomListener(window, 'load', initialize(handler));
+function getCanvasXY(caurrentLatLng){
+      var scale = Math.pow(2, map.getZoom());
+     var nw = new google.maps.LatLng(
+         map.getBounds().getNorthEast().lat(),
+         map.getBounds().getSouthWest().lng()
+     );
+     var worldCoordinateNW = map.getProjection().fromLatLngToPoint(nw);
+     var worldCoordinate = map.getProjection().fromLatLngToPoint(caurrentLatLng);
+     var caurrentLatLngOffset = new google.maps.Point(
+         Math.floor((worldCoordinate.x - worldCoordinateNW.x) * scale),
+         Math.floor((worldCoordinate.y - worldCoordinateNW.y) * scale)
+     );
+     return caurrentLatLngOffset;
+  }
+  function setMenuXY(caurrentLatLng){
+    var mapWidth = $('#map_canvas').width();
+    var mapHeight = $('#map_canvas').height();
+    var menuWidth = $('.contextmenu').width();
+    var menuHeight = $('.contextmenu').height();
+    var clickedPosition = getCanvasXY(caurrentLatLng);
+    var x = clickedPosition.x ;
+    var y = clickedPosition.y ;
+
+     if((mapWidth - x ) < menuWidth)
+         x = x - menuWidth;
+    if((mapHeight - y ) < menuHeight)
+        y = y - menuHeight;
+
+    $('.contextmenu').css('left',x  );
+    $('.contextmenu').css('top',y );
+    }   
+  function showContextMenu(caurrentLatLng  ) {
+        var projection;
+        var contextmenuDir;
+        projection = map.getProjection() ;
+        $('.contextmenu').remove();
+            contextmenuDir = document.createElement("div");
+          contextmenuDir.className  = 'contextmenu';
+        contextmenuDir.innerHTML = "<a id='menu1'><div class=context>nawiguj<\/div><\/a><a id='menu2'><div class=context>jedz do<\/div><\/a><a id='menu3'><div class=context>wyczysc<\/div><\/a><a id='menu4'><div class=context>wyznacz trase<\/div><\/a>";
+
+        $(map.getDiv()).append(contextmenuDir);
+        
+        setMenuXY(caurrentLatLng);
+
+        contextmenuDir.style.visibility = "visible";
+       }
+
+
+
+
+
 
     /**
      * Pinezka
@@ -119,6 +171,9 @@ AugmentedSzczecin.controller('MapController',['$scope', '$http', function($scope
         });
         infowindow.open(map,marker);
     }
+
+
+
 
     $scope.monuments = [
         {
