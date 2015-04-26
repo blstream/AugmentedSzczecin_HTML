@@ -7,6 +7,22 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
             // we need remember, 'pois' can be accessible after a while
             // outside the function
             $scope.pois = data;
+
+            var points = [];
+                $scope.pois.forEach(function(entery) {
+                    var coordinates = new google.maps.LatLng(entery['location']['latitude'],
+                        entery['location']['longitude']
+                    );
+
+                    placeMarker(coordinates);
+                        poiMarker= new google.maps.Marker({
+                            position: coordinates,
+                            map: map
+                        });
+                        points.push(poiMarker);
+                });
+            var markerCluster = new MarkerClusterer(map, points);
+
         })
         .error(function(data, status, headers, config){
             //@TODO: here will appear Error Handling someday...
@@ -52,24 +68,10 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
             placeMarker(event.latLng);
         });
 
-        var points = [];
-
-        points.forEach(function(entry){
-            var coordinates = new google.maps.LatLng(
-                entry[1], entry[2]
-            );
-
-            poiMarker= new google.maps.Marker({
-                position: coordinates,
-                map: map
-            });
-            points.push(poiMarker);
-        });
         /**
          * Clustering - creates one Poi from group of Pois
          * @type {google}
          */
-       var markerCluster = new MarkerClusterer(map, points);
     }
     google.maps.event.addDomListener(window, 'load', initialize(handler));
 

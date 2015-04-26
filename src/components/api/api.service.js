@@ -18,4 +18,8 @@ AugmentedSzczecin.service('apiService', function($http){
     that.getPois = function () {
         return $http.get(poisUri)
     };
+
+    that.getPoiById = function(id) {
+        return $http.get(uri + '/' + id)
+    }
 });
