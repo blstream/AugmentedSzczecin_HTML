@@ -18,8 +18,20 @@ AugmentedSzczecin.service('apiService', function($http){
     that.getPois = function () {
         return $http.get(poisUri)
     };
-
-    that.getPoiById = function(id) {
-        return $http.get(uri + '/' + id)
-    }
+    /** create new POI */
+    that.createPoi = function () {
+        return $http.post(poisUri)
+    };
+    /** retrieve single POI */
+    that.getPoiById = function (id) {
+        return $http.get(poisUri + '/' + id)
+    };
+    /**update single POI */
+    that.updatePoi = function (id) {
+        return $http.put(poisUri + '/' + id)
+    };
+    /**delete single POI */
+    that.deletePoi = function (id) {
+        return $http.delete(poisUri + '/' + id)
+    };
 });
