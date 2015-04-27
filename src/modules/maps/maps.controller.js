@@ -1,30 +1,45 @@
-AugmentedSzczecin.controller('MapController',['$scope', '$http', function($scope, $http){
+AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($scope,apiService ){
+    $scope.pois = [];
 
-    $http.get('http://private-anon-1813a5f7c-patronage2015.apiary-mock.com/pois').
-        success(function(data, status, headers, config){
-            $scope.jsonList= data;
-        }).
-        error(function(data,status, headers, config){
+    /** get all available pois from server and keep in context */
+    apiService.getPois()
+        .success(function(data, status, headers, config){
+            // we need remember, 'pois' can be accessible after a while
+            // outside the function
+            $scope.pois = data;
 
+            var points = [];
+                $scope.pois.forEach(function(entery) {
+                    var coordinates = new google.maps.LatLng(entery['location']['latitude'],
+                        entery['location']['longitude']
+                    );
+
+                    placeMarker(coordinates);
+                        poiMarker= new google.maps.Marker({
+                            position: coordinates,
+                            map: map
+                        });
+                        points.push(poiMarker);
+                });
+            var markerCluster = new MarkerClusterer(map, points);
+
+        })
+        .error(function(data, status, headers, config){
+            //@TODO: here will appear Error Handling someday...
         });
-
 
     var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
     var map;
     var handler = document.getElementById('map-canvas');
-    /**
-     * Inicjalizacja mapy, centrowanie jej, oraz wyswietlanie tras
-     *
-     */
+    var initialize;
+
+    /** Map initialization    */
     function initialize(mapHandler) {
         directionsDisplay = new google.maps.DirectionsRenderer();
         var center = new google.maps.LatLng(53.425175, 14.550454);
-        /**
-         * Opcje mapy
-         * @type {Object}
-         */
 
+        /** Map options */
         var mapOptions = {
             streetViewControl: true,
             mapTypeControl: true,
@@ -32,7 +47,7 @@ AugmentedSzczecin.controller('MapController',['$scope', '$http', function($scope
             zoom:16,
             center: center,
             scaleControl: true,
-            //cleaning map of default POIs
+            /** cleaning map of default POIs */
             styles: [{
                 featureType: "poi",
                 elementType: "all",
@@ -41,65 +56,32 @@ AugmentedSzczecin.controller('MapController',['$scope', '$http', function($scope
                 }]
             }]
         };
-        /**
-         * Wysiwietlanie mapy wraz z jej opcjami
-         * @type {google}
-         */
         map = new google.maps.Map(mapHandler, mapOptions);
         directionsDisplay.setMap(map);
 
         /**
-         * Funkcja stawiajaca Pinezke na mapie
-         * @param  {[object} event) {placeMarker(event.latLng);}  - ppm stawia na mapie Pinezke
-         * @return {[type]}        - Pinezka pojawia sie w wyznaczonym przez nas miejscu
+         * Right mouse button click sets a Marker on Map
+         * @param  {[object} event) {placeMarker(event.latLng);}  - ppm sets Marker
+         * @return {[type]}        - set Marker in selected place
          */
         google.maps.event.addListener(map, 'rightclick', function(event) {
             placeMarker(event.latLng);
         });
 google.maps.event.addListener(map, "rightclick",function(event){showContextMenu(event.latLng);});
-
         /**
-         * @todo poiList - tablica z punktami poi
-         * @type {Array}
+         * Clustering - creates one Poi from group of Pois
+         * @type {google}
          */
-        var poiList= [];
-        /**
-         * punkty poi wyznaczone, do czasu uzyskania poiList
-         * @type {Array}
-         */
-        var points= [
-            ['katedra', 53.424736, 14.556168],
-            ['kaskada', 53.428271, 14.551955],
-            ['castorama', 53.386734, 14.659007],
-            ['komisariat dąbie', 53.394111, 14.671734],
-            ['outlet park', 53.381792, 14.669432],
-            ['wneiz', 53.438839, 14.520724],
-            ['wi zut', 53.448778, 14.491090],
-            ['kordecki', 53.423487, 14.531787],
-            ['szpital na unii', 53.448693, 14.504945],
-            ['deptak', 53.429926, 14.544256]
-        ]
-       /**
-        * Klastrowanie, zbieranie wiekszej ilosci punktow poi w jeden
-        * @param  {google} entry){var coordinates  - cordy punktow poi
-        */
-        points.forEach(function(entry){
-            var coordinates = new google.maps.LatLng(
-                entry[1], entry[2]
-            );
-            poiMarker= new google.maps.Marker({
-                position: coordinates,
-                map: map
-            });
-            poiList.push(poiMarker);
-        });
-        /**
-         * Tworzenie Punktu klastwoania, z wyswietlanie ilosci punktow poi w nim
-         * @type {MarkerClusterer}
-         */
-       var markerCluster = new MarkerClusterer(map, poiList);
     }
     google.maps.event.addDomListener(window, 'load', initialize(handler));
+
+    /**
+     * Marker
+     * @param  {object} location 
+     * @return {google}          - display Marker in selected place
+     */
+
+
 function getCanvasXY(caurrentLatLng){
       var scale = Math.pow(2, map.getZoom());
      var nw = new google.maps.LatLng(
@@ -138,7 +120,13 @@ function getCanvasXY(caurrentLatLng){
         $('.contextmenu').remove();
             contextmenuDir = document.createElement("div");
           contextmenuDir.className  = 'contextmenu';
-        contextmenuDir.innerHTML = "<a id='menu1'><div class=context>nawiguj<\/div><\/a><a id='menu2'><div class=context>jedz do<\/div><\/a><a id='menu3'><div class=context>wyczysc<\/div><\/a><a id='menu4'><div class=context>wyznacz trase<\/div><\/a>";
+         contextmenuDir.innerHTML = 
+
+        "<a id='menu1' onclick='google.maps.event.addListener(map, 'click', function(event) {map.setPosition(latLng)'>"
+         + "   <div class=context>nawiguj<\/div><\/a>"
+        +"    <a id='menu2'   onclick='google.maps.event.addListener(map, 'click', function(event) {map.setPosition(latLng)'> "
+          +   "<div class=context>jedz do<\/div><\/a>"
+        + "<a id='menu3'><div class=context>wyczysc<\/div><\/a><a id='menu4'><div class=context>wyznacz trase<\/div><\/a>";
 
         $(map.getDiv()).append(contextmenuDir);
         
@@ -146,24 +134,13 @@ function getCanvasXY(caurrentLatLng){
 
         contextmenuDir.style.visibility = "visible";
        }
-
-
-
-
-
-
-    /**
-     * Pinezka
-     * @param  {object} location - okreslenie lokacji w ktorej postawiona bedzie pinezka
-     * @return {google}          - wyswietlenie pinezkina mapie
-     */
     function placeMarker(location) {
         var marker = new google.maps.Marker({
             position: location,
             map: map
         });
         /**
-         * Okienko informacyjne z coordami
+         * Marker info window
          * @type {google}
          */
         var infowindow = new google.maps.InfoWindow({
@@ -172,41 +149,16 @@ function getCanvasXY(caurrentLatLng){
         infowindow.open(map,marker);
     }
 
-
-
-
-    $scope.monuments = [
-        {
-        'name': 'Brama Portowa',
-        'lat': 53.425060,
-        'lng': 14.550462
-        },
-        {
-        'name': 'Zamek Książąt Pomorskich',
-        'lat': 53.426220,
-        'lng': 14.560521
-        },
-        {
-        'name': 'Wały Chrobrego',
-        'lat': 53.428528,
-        'lng': 14.563938
-        },
-        {
-        'name': 'Jasne Błonia',
-        'lat': 53.440721,
-        'lng': 14.540001
-        }
-    ];
     /**
-     * Wyznaczanie trasy
-     * @param  {object} origin      - punkt poczatkowy naszej trasy
-     * @param  {object} destination - punkt koncowy naszej trasy
-     * @return {google}             - wyznacza najkrotsza trase pomiedzy punktami
+     * Path finding
+     * @param  {object} origin      - start point of path
+     * @param  {object} destination - end point of path
+     * @return {google}             - shows the shortest path
      */
     $scope.calcRoute = function (origin, destination) {
         var request = {
-            origin: new google.maps.LatLng(origin.lat, origin.lng),
-            destination: new google.maps.LatLng(destination.lat, destination.lng),
+            origin: new google.maps.LatLng(origin.location.latitude, origin.location.longitude),
+            destination: new google.maps.LatLng(destination.location.latitude, destination.location.longitude),
             travelMode: google.maps.TravelMode.DRIVING
         };
         directionsService.route(request, function(response, status) {
