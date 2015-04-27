@@ -57,4 +57,26 @@ AugmentedSzczecin.service('apiService', function($http){
     that.deleteEvent = function (id) {
         return $http.delete(eventsUri + '/' + id)
     };
+    //uri for all people
+    var peopleUri = apiLocation + 'people';
+    /**get list of all people */
+    that.getPeople = function () {
+        return $http.get(peopleUri)
+    };
+    /**add new person*/
+    that.addPerson = function (data) {
+        return $http.post(peopleUri, data)
+    };
+    /**retrieve person*/
+    that.retrievePerson = function (id) {
+        return $http.get(peopleUri + '/' + id)
+    };
+    /** update person */
+    that.updatePerson = function (id, data) {
+        return $http.put(peopleUri + '/' + id, data)
+    };
+    /** delete person */
+    that.deletePerson = function (id) {
+        return $http.delete(peopleUri + '/' + id)
+    };
 });
