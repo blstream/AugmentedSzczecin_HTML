@@ -102,4 +102,28 @@ AugmentedSzczecin.service('apiService', function($http){
     that.deletePlace = function (id) {
         return $http.delete(placesUri + '/' + id)
     };
+    /** get all known POI types matching search criteria: location and radius */
+    that.searchPoi = function (lg, lt, radius) {
+        return $http.get(apiLocation + '/q?lg=' + lg + '&lt=' + lt + '&radius=' + radius)
+    };
+    /** uri for all users */
+    var usersUri = apiLocation + 'users';
+
+    /** fetch all users */
+    that.fetchUsers = function () {
+        return $http.get(usersUri)
+    };
+    /** add new user */
+    that.addUser = function (data) {
+        return $http.post(usersUri, data)
+    };
+    /** retrieve single user */
+    that.retrieveUser = function (id) {
+        return $http.get(usersUri + '/' +id)
+    };
+    /** delete single user */
+    that.deleteUser = function (id) {
+        return $http.delete(usersUri + '/' +id)
+    };
+
 });
