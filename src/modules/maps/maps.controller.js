@@ -21,6 +21,10 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
                         });
                         points.push(poiMarker);
                 });
+            /**
+            * Clustering - creates one Poi from group of Pois
+            * @type {google}
+            */            
             var markerCluster = new MarkerClusterer(map, points);
 
         })
@@ -32,12 +36,11 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
     var directionsService = new google.maps.DirectionsService();
     var map;
     var handler = document.getElementById('map-canvas');
-    var initialize;
+
 
     /** Map initialization    */
     function initialize(mapHandler) {
         directionsDisplay = new google.maps.DirectionsRenderer();
-        var center = new google.maps.LatLng(53.425175, 14.550454);
 
         /** Map options */
         var mapOptions = {
@@ -45,7 +48,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
             mapTypeControl: true,
             panControl: false,
             zoom:16,
-            center: center,
+            center:new google.maps.LatLng(53.4252,14.5504),
             scaleControl: true,
             /** cleaning map of default POIs */
             styles: [{
@@ -58,7 +61,22 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         };
         map = new google.maps.Map(mapHandler, mapOptions);
         directionsDisplay.setMap(map);
+    }
 
+    /**
+     * Marker
+     * @param  {object} location 
+     * @return {google}          - display Marker in selected place
+     */    
+    function placeMarker(location) {
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+
+        google.maps.event.addListener(marker, 'leftclick', function() {
+            infowindow.open(map,marker);
+        });
         /**
          * Right mouse button click sets a Marker on Map
          * @param  {[object} event) {placeMarker(event.latLng);}  - ppm sets Marker
@@ -66,34 +84,9 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
          */
         google.maps.event.addListener(map, 'rightclick', function(event) {
             placeMarker(event.latLng);
-        });
-
-        /**
-         * Clustering - creates one Poi from group of Pois
-         * @type {google}
-         */
+        });    
     }
     google.maps.event.addDomListener(window, 'load', initialize(handler));
-
-    /**
-     * Marker
-     * @param  {object} location 
-     * @return {google}          - display Marker in selected place
-     */
-    function placeMarker(location) {
-        var marker = new google.maps.Marker({
-            position: location,
-            map: map
-        });
-        /**
-         * Marker info window
-         * @type {google}
-         */
-        var infowindow = new google.maps.InfoWindow({
-            content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
-        });
-        infowindow.open(map,marker);
-    }
 
     /**
      * Path finding
