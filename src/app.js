@@ -10,8 +10,8 @@ AugmentedSzczecin.config(function ($stateProvider, $urlRouterProvider){
     });
 });
 
-// AugmentedSzczecin.run(function ($rootScope){
-//
-// $rootScope.placeMaker = function(){
-// }
-// });
+AugmentedSzczecin.run(function ($rootScope){
+    $rootScope.$on('apiError', function(e, data) {
+        console.log(data);
+    });
+});

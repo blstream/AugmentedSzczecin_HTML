@@ -1,4 +1,4 @@
-AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($scope,apiService ){
+AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($scope,apiService){
     $scope.pois = [];
 
     /** get all available pois from server and keep in context */
@@ -29,7 +29,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
 
         })
         .error(function(data, status, headers, config){
-            //@TODO: here will appear Error Handling someday...
+            $scope.$emit('apiError', data);
         });
 
     var directionsDisplay;
