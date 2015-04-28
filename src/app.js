@@ -1,4 +1,4 @@
-var AugmentedSzczecin = angular.module('AugmentedSzczecin',['ui.router']);
+var AugmentedSzczecin = angular.module('AugmentedSzczecin',['ui.router', 'ipCookie']);
 
 AugmentedSzczecin.config(function ($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise("/map");
