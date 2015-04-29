@@ -15,8 +15,13 @@ AugmentedSzczecin.config(function ($stateProvider, $urlRouterProvider){
     });
 });
 
-AugmentedSzczecin.run(function ($rootScope){
-    $rootScope.$on('apiError', function(e, data) {
-        console.log(data);
-    });
-});
+AugmentedSzczecin.run(['$rootScope', '$state', 'ipCookie', function ($rootScope, $state, ipCookie){
+  $rootScope.$on('apiError', function(e, data) {
+    console.log(data);
+  });
+
+  if (!ipCookie('user')) {
+    console.log($state);
+    $state.go('login');
+  }
+}]);

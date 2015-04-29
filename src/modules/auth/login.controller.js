@@ -11,10 +11,5 @@ AugmentedSzczecin.controller('LoginController', ['$scope', 'ipCookie', function(
    */
   $scope.loginAction = function (user) {
     ipCookie('user', user);
-AugmentedSzczecin.controller('LoginController', ['$scope', function($scope) {
-  $scope.user = {};
-
-  $scope.loginAction = function (user) {
-    console.log(user.email, user.password);
-  }
+  };
 }]);
