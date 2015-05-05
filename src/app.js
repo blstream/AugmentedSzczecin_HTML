@@ -13,15 +13,16 @@ AugmentedSzczecin.config(function ($stateProvider, $urlRouterProvider){
       templateUrl: "src/modules/auth/login.tmpl.html",
       controller: "LoginController"
     });
+
 });
 
-AugmentedSzczecin.run(['$rootScope', '$state', 'ipCookie', function ($rootScope, $state, ipCookie){
+AugmentedSzczecin.run(['$rootScope', '$state', 'ipCookie', '$window', function ($rootScope, $state, ipCookie, $window){
   $rootScope.$on('apiError', function(e, data) {
     console.log(data);
   });
 
   if (!ipCookie('user')) {
-    console.log($state);
+    $window.location = '/#/login';
     $state.go('login');
   }
 }]);
