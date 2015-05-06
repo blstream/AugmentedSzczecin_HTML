@@ -2,7 +2,7 @@
  * @author Wiktor Rutka <wiktor.rutka@blstream.com>
  */
 
-AugmentedSzczecin.controller('LoginController', ['$scope', 'ipCookie', function($scope, ipCookie) {
+AugmentedSzczecin.controller('LoginController', ['$scope', '$state', 'ipCookie', function($scope, $state, ipCookie) {
   $scope.user = {};
 
   /**
@@ -11,5 +11,6 @@ AugmentedSzczecin.controller('LoginController', ['$scope', 'ipCookie', function(
    */
   $scope.loginAction = function (user) {
     ipCookie('user', user);
+    $state.go('map');
   };
 }]);
