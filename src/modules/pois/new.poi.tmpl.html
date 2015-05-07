@@ -1,0 +1,45 @@
+<div ng-controller="AddPoiController" >
+    <h1>Dodaj POI!</h1>
+    <form>
+        <label for="name">Nazwa</label>
+        <input type="text" id="name" ng-model="poi.name" required><br />
+        <label for="description">Opis</label>
+        <input type="text" id="description" ng-model="poi.description" required><br />
+        <label for="tag">Tagi</label>
+        <input type="text" id="tag" ng-model="poi.tag" required> <br/>
+        <label>Adres</label><br/>
+        <label for="street">Ulica</label>
+        <input type="text" id="street" ng-model="poi.adress.street" required><br/>
+        <label for="postalcode">Kod pocztowy</label>
+        <input id="postalcode" ng-model="poi.adress.postalcode" required> <br/>
+        <label for="city">Miasto</label>
+        <input id="city" type="text" ng-model="poi.adress.city" required> <br/>
+        <label for="number">Numer budynku</label>
+        <input type="text" id="number" ng-model="poi.adress.number" required><br/>
+        <label for="localnumber">Nr lokalu</label>
+        <input type="text" id="localnumber" ng-model="poi.adress.localnumber"><br/>
+        <label for="category" >Kategoria</label>
+        <select id="category" ng-model="poi.category" required>
+            <option value="public">Miejsca publiczne</option>
+            <option value="business">Firmy i usługi</option>
+            <option value="events">Wydarzenia</option>
+            <option value="friends">Znajomi</option>
+        </select> <br/>
+        <label for="subcategory">Podkategoria</label>
+        <select id="subcategory" ng-model="poi.subcategory">
+            <option value="school">szkoła</option>
+            <option value="hospital">szpital</option>
+            <option value="park">park</option>
+            <option value="monument">zabytek</option>
+            <option value="museum">muzeum</option>
+            <option value="office">urząd</option>
+            <option value="station">dworzec</option>
+            <option value="postoffice">poczta</option>
+            <option value="church">kościół</option>
+        </select> <br/>
+        <input type="submit" ng-click="addPoi(poi)" value="Dodaj" />
+    </form>
+
+    <pre>form = {{poi | json}}</pre>
+
+</div>
