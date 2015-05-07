@@ -85,6 +85,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
 
         google.maps.event.addListener(marker, 'leftclick', function() {
             infowindow.open(map,marker);
+
         });
         /**
          * Right mouse button click sets a Marker on Map
@@ -92,11 +93,21 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
          * @return {[type]}        - set Marker in selected place
          */
         google.maps.event.addListener(map, 'rightclick', function(event) {
-            placeMarker(event.latLng);
-        });    
-    }
-    google.maps.event.addDomListener(window, 'load', initialize(handler));
+           placeMarker(event.latLng);
+           
+       });  
 
+
+}
+function routeMarker(location_poim){
+google.maps.event.addListener(poiMarker,'rightclick',function(){
+location_poim=poiMarker.getPosition();
+return location_poim;
+});
+}
+
+    google.maps.event.addDomListener(window, 'load', initialize(handler));
+start_route=53.4252,14.5504;
     /**
      * Path finding
      * @param  {object} origin      - start point of path
