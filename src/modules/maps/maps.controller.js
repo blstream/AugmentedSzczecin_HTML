@@ -2,7 +2,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
     $scope.pois = [];
 
     /** get all available pois from server and keep in context */
-    apiService.getPois()
+    apiService.getPlaces()
         .success(function(data, status, headers, config){
             // we need remember, 'pois' can be accessible after a while
             // outside the function
@@ -31,7 +31,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         .error(function(data, status, headers, config){
             $scope.$emit('apiError', data);
         });
-    apiService.getPoiById(0)
+    apiService.retrievePlace(0)
         .success(function(data,status, headers, config) {
             $scope.singlePoi = data;
             var name= $scope.singlePoi['name']
