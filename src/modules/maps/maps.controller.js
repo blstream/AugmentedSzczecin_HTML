@@ -122,12 +122,12 @@ start_route=53.4252,14.5504;
      * @return {google}             - shows the shortest path
      */
 
- $scope.start_route='53.4252,14.5504';
-$scope.endRoute;
+$scope.start_route= new google.maps.LatLng(53.4252,14.5504);
+$scope.endRoute='';
 
 function addPoiListener(poiMarker){
     google.maps.event.addListener(poiMarker,'rightclick',function(){
-    $scope.endRoute=poiMarker.getPosition();});
+    $scope.endRoute=console.log(poiMarker.getPosition());});
 }
 
 
