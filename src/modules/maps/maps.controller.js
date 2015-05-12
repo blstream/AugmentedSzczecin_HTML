@@ -2,7 +2,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
     $scope.pois = [];
 
     /** get all available pois from server and keep in context */
-    apiService.getPois()
+    apiService.getPlaces()
         .success(function(data, status, headers, config){
             // we need remember, 'pois' can be accessible after a while
             // outside the function
@@ -31,7 +31,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         .error(function(data, status, headers, config){
             $scope.$emit('apiError', data);
         });
-    apiService.getPoiById(0)
+    apiService.retrievePlace(0)
         .success(function(data,status, headers, config) {
             $scope.singlePoi = data;
             var name= $scope.singlePoi['name']
@@ -85,7 +85,6 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
 
         google.maps.event.addListener(marker, 'leftclick', function() {
             infowindow.open(map,marker);
-
         });
         /**
          * Right mouse button click sets a Marker on Map
@@ -93,12 +92,13 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
          * @return {[type]}        - set Marker in selected place
          */
         google.maps.event.addListener(map, 'rightclick', function(event) {
-           placeMarker(event.latLng);
-           
-       });  
+            placeMarker(event.latLng);
+        });    
+    }
+    google.maps.event.addDomListener(window, 'load', initialize(handler));
 
 
-}
+/*
 function routeMarker(location_poim){
 google.maps.event.addListener(poiMarker,'rightclick',function(){
 location_poim=poiMarker.getPosition();
@@ -108,12 +108,30 @@ return location_poim;
 
     google.maps.event.addDomListener(window, 'load', initialize(handler));
 start_route=53.4252,14.5504;
+
+
+*/
+
+       
+
+
     /**
      * Path finding
      * @param  {object} origin      - start point of path
      * @param  {object} destination - end point of path
      * @return {google}             - shows the shortest path
      */
+
+ $scope.start_route='53.4252,14.5504';
+$scope.endRoute;
+
+function addPoiListener(poiMarker){
+    google.maps.event.addListener(poiMarker,'rightclick',function(){
+    $scope.endRoute=poiMarker.getPosition();});
+}
+
+
+
     $scope.calcRoute = function (origin, destination) {
         var request = {
             origin: new google.maps.LatLng(origin.location.latitude, origin.location.longitude),

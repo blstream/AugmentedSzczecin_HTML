@@ -12,7 +12,12 @@ AugmentedSzczecin.config(function ($stateProvider, $urlRouterProvider){
       url: "/login",
       templateUrl: "src/modules/auth/login.tmpl.html",
       controller: "LoginController"
-    });
+    })
+      .state('newPoi', {
+        url: "/newpoi",
+        templateUrl: "src/modules/pois/new.poi.tmpl.html",
+        controller: "AddPoiController"
+      });
 
 });
 
