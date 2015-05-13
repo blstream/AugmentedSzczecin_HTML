@@ -12,7 +12,7 @@
 .css-form input.ng-valid.ng-touched {
     background-color: #78FA89;
 }
-/**
+
 #rsmenu {
 	position: absolute;
 	top: 50px;
@@ -24,7 +24,7 @@
 	background-color: #666;
 	display: none;
 }
-*/
+
 #lsmenu {
 	position: absolute;
 	top: 50px;

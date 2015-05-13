@@ -74,6 +74,11 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
             map: map
         });
 
+google.maps.event.addListener(marker, 'rightclick', function() {
+            $scope.endRoute = marker.getPosition();
+        });
+
+
         google.maps.event.addListener(marker, 'leftclick', function() {
           apiService.retrievePlace(0)
         	.success(function(data,status, headers, config) {
@@ -107,6 +112,9 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
     }
     google.maps.event.addDomListener(window, 'load', initialize(handler));
 
+
+$scope.start_route = new google.maps.LatLng(53.4252,14.5504);
+
     /**
      * Path finding
      * @param  {object} origin      - start point of path
@@ -115,8 +123,8 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
      */
     $scope.calcRoute = function (origin, destination) {
         var request = {
-            origin: new google.maps.LatLng(origin.location.latitude, origin.location.longitude),
-            destination: new google.maps.LatLng(destination.location.latitude, destination.location.longitude),
+           origin: origin,
+            destination: destination,
             travelMode: google.maps.TravelMode.DRIVING
         };
         directionsService.route(request, function(response, status) {
