@@ -13,11 +13,6 @@ AugmentedSzczecin.config(function ($stateProvider, $urlRouterProvider){
       templateUrl: "src/modules/auth/login.tmpl.html",
       controller: "LoginController"
     })
-      .state('newPoi', {
-        url: "/newpoi",
-        templateUrl: "src/modules/pois/new.poi.tmpl.html",
-        controller: "AddPoiController"
-      });
 
 });
 
@@ -31,3 +26,10 @@ AugmentedSzczecin.run(['$rootScope', '$state', 'ipCookie', '$window', function (
     $state.go('login');
   }
 }]);
+
+AugmentedSzczecin.directive('formTemplate', function() {
+      return {
+          restrict: "E",
+          templateUrl: "/src/modules/pois/new.poi.tmpl.html", 
+      };
+    });

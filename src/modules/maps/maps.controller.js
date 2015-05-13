@@ -31,15 +31,6 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         .error(function(data, status, headers, config){
             $scope.$emit('apiError', data);
         });
-    apiService.retrievePlace(0)
-        .success(function(data,status, headers, config) {
-            $scope.singlePoi = data;
-            var name= $scope.singlePoi['name']
-            console.log(name);
-        })
-        .error(function(data, status, headers, config){
-            $scope.$emit('apiError', data);
-    });
 
     var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
@@ -84,16 +75,35 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         });
 
         google.maps.event.addListener(marker, 'leftclick', function() {
-            infowindow.open(map,marker);
+          apiService.retrievePlace(0)
+        	.success(function(data,status, headers, config) {
+          $scope.singlePoi = data;
+            var name= $scope.singlePoi['name']
+            console.log(name);
+       	 	})
+          .error(function(data, status, headers, config){
+            $scope.$emit('apiError', data);
+          });
         });
         /**
          * Right mouse button click sets a Marker on Map
          * @param  {[object} event) {placeMarker(event.latLng);}  - ppm sets Marker
          * @return {[type]}        - set Marker in selected place
          */
-        google.maps.event.addListener(map, 'rightclick', function(event) {
-            placeMarker(event.latLng);
-        });    
+        google.maps.event.addListener(map, 'rightclick', function(event) {        
+          placeMarker(event.latLng);    
+            var alert = window.confirm("Czy na pewno chcesz umieścić pinezkę tutaj?")
+          if (alert)
+            showMenu();
+          else
+            marker.setMap(null);
+        });   
+
+        function showMenu() {
+        	if (document.getElementById("lsmenu").style.display = "none"){
+        	       document.getElementById("lsmenu").style.display = "block"
+        	}
+		} 
     }
     google.maps.event.addDomListener(window, 'load', initialize(handler));
 
