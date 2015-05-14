@@ -1,12 +1,3 @@
-Start point
-<select id="origin">
-    <option ng-repeat="poi in pois" value="{{$index}}">{{poi.name}}</option>
-</select>
-End point
-<select id="destination">
-    <option ng-repeat="poi in pois" value="{{$index}}">{{poi.name}}</option>
-</select>
-<button ng-click = "calcRoute(pois[getValue('origin')],pois[getValue('destination')])">Go</button>
 <div id="map-canvas"></div>
 <div id="lsmenu">
 	<form-template></form-template>

@@ -2,6 +2,5 @@ AugmentedSzczecin.controller('AddPoiController', ['$scope', 'apiService', functi
     $scope.addPoi = function(poi) {
         $scope.newPoi = angular.toJson(poi);
         apiService.addPlace($scope.newPoi);
-        console.log($scope.newPoi);
     };
 }]);

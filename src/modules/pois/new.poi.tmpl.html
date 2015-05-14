@@ -1,6 +1,6 @@
 <div ng-controller="AddPoiController" >
     <h1>Dodaj POI!</h1>
-    <form class="css-form">
+    <form class="form-validation">
         <label for="name">Nazwa</label>
         <input type="text" id="name" ng-model="poi.name" ng-maxlength="50" required><br />
         <label for="description">Opis</label>
@@ -39,7 +39,4 @@
         </select> <br/>
         <input type="submit" ng-click="addPoi(poi)" value="Dodaj" />
     </form>
-
-    <pre>form = {{poi | json}}</pre>
-
 </div>
