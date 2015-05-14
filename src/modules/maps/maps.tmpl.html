@@ -1,9 +1,12 @@
 <div id="map-canvas"></div>
-<div id="lsmenu">
+  <div id="lsmenu">
 	<form-template></form-template>
-</div>
-<button ng-click = "calcRoute(start_route,endRoute)">Nawiguj</button>
-<div id="rsmenu">
-	<button ng-click = "calcRoute(start_route,endRoute)">Nawiguj</button>
-</div>
-
+  </div>
+  <div id="rsmenu">
+    <button ng-click = "calcRoute(start_route,endRoute)">Nawiguj</button>
+      <ul>
+	<li ng-repeat="poi in pois">
+	  <h2>{{poi.singlePoi.name}}</h2>
+	</li>
+      </ul>
+  </div>

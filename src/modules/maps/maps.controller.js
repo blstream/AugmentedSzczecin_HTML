@@ -36,19 +36,18 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
     var directionsService = new google.maps.DirectionsService();
     var map;
     var handler = document.getElementById('map-canvas');
-
+    var mainPosition = new google.maps.LatLng(53.4252,14.5504);
 
     /** Map initialization    */
     function initialize(mapHandler) {
-        directionsDisplay = new google.maps.DirectionsRenderer();
-
+        directionsDisplay = new google.maps.DirectionsRenderer();       
         /** Map options */
         var mapOptions = {
             streetViewControl: true,
             mapTypeControl: true,
             panControl: false,
             zoom:16,
-            center:new google.maps.LatLng(53.4252,14.5504),
+            center:mainPosition,
             scaleControl: true,
             /** cleaning map of default POIs */
             styles: [{
@@ -61,7 +60,9 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         };
         map = new google.maps.Map(mapHandler, mapOptions);
         directionsDisplay.setMap(map);
+		directionsDisplay.setOptions( { suppressMarkers: true } );
     }
+
 
     /**
      * Marker
@@ -73,11 +74,16 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
             position: location,
             map: map
         });
+         var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+         var home = new google.maps.Marker({
+		  position: mainPosition,
+		  map: map,
+		  icon: iconBase + 'schools_maps.png'
+		});        
 
-google.maps.event.addListener(marker, 'rightclick', function() {
+		google.maps.event.addListener(marker, 'rightclick', function() {
             $scope.endRoute = marker.getPosition();
         });
-
 
         google.maps.event.addListener(marker, 'leftclick', function() {
           apiService.retrievePlace(0)
@@ -98,17 +104,26 @@ google.maps.event.addListener(marker, 'rightclick', function() {
         google.maps.event.addListener(map, 'rightclick', function(event) {        
           placeMarker(event.latLng);    
             var alert = window.confirm("Czy na pewno chcesz umieścić pinezkę tutaj?")
+         /**
           if (alert)
             showMenu();
           else
             marker.setMap(null);
-        });   
-
-        function showMenu() {
-        	if (document.getElementById("lsmenu").style.display = "none"){
-        	       document.getElementById("lsmenu").style.display = "block"
+        */
+        }); 
+        google.maps.event.addDomListener(marker, 'click', function() { 
+        	if (document.getElementById("rsmenu").style.display = "none"){
+        	  document.getElementById("rsmenu").style.display = "block"
         	}
-		} 
+		});
+        google.maps.event.addDomListener(map, 'click', function() { 
+        	if (document.getElementById("lsmenu").style.display = "none"){
+        	  document.getElementById("lsmenu").style.display = "block"
+        	}
+        	if (document.getElementById("rsmenu").style.display = "block"){
+        	  document.getElementById("rsmenu").style.display = "none"
+        	}
+		});
     }
     google.maps.event.addDomListener(window, 'load', initialize(handler));
 
