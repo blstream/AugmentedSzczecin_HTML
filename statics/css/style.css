@@ -21,8 +21,9 @@
 	width: 250px;
 	height: auto;
 	float: right;
-	background-color: #666;
+	background-color: #fff;
 	display: none;
+	opacity: 0.9;
 }
 
 #lsmenu {
