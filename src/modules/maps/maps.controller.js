@@ -29,7 +29,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
 
         })
         .error(function(data, status, headers, config){
-            $scope.$emit('apiError', data);
+            $scope.$emit('apiError', data, status, headers, config);
         });
 
     var directionsDisplay;

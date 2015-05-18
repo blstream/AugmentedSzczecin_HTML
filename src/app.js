@@ -17,8 +17,10 @@ AugmentedSzczecin.config(function ($stateProvider, $urlRouterProvider){
 });
 
 AugmentedSzczecin.run(['$rootScope', '$state', 'ipCookie', '$window', function ($rootScope, $state, ipCookie, $window){
-  $rootScope.$on('apiError', function(e, data) {
-    console.log(data);
+  $rootScope.$on('apiError', function(e, data, status, headers, config ) {
+      console.log(config.method);
+      alert('wystąpił błąd podczas połączenia z serwerem aplikacji ' + ' METHOD: ' + config.method
+     + ' URL: ' + config.url );
   });
 
   if (!ipCookie('user')) {
