@@ -1,12 +1,30 @@
 <div id="map-canvas"></div>
-  <div id="lsmenu">
-	<form-template></form-template>
-  </div>
-  <div id="rsmenu">
-    <button ng-click = "calcRoute(start_route,endRoute)">Nawiguj</button>
-      <ul>
-	<li ng-repeat="poi in pois">
-	  <h2>{{poi.singlePoi.name}}</h2>
-	</li>
-      </ul>
-  </div>
+<div class="topnav">
+	<ul>
+		<a href=""><li>Start</li></a>
+		<a href=""><li>Augmented Szczecin</li></a>
+		<a href=""><li>Inna pozycja</li></a>
+		<a href=""><li>Twoje konto</li></a>
+		<a href=""><li>Współpraca</li></a>
+	</ul>
+</div>
+<div id="lsmenu" class="menu">
+	<div class="topbar"></div>
+	<div class="leftnav">
+		
+		<ul>
+			<a href=""><li>W pobliżu</li></a>
+			<a href=""><li>Moje miejsca</li></a>
+			<a href=""><li>Dodaj POI</li></a>
+		</ul>
+	</div>
+    <form-template></form-template>
+</div>
+<div id="rsmenu" class="menu">
+    <button ng-click="calcRoute(start_route,endRoute)">Nawiguj</button>
+    <ul>
+        <li ng-repeat="poi in pois">
+            <h2>{{poi.singlePoi.name}}</h2>
+        </li>
+    </ul>
+</div>
