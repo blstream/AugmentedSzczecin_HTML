@@ -3,4 +3,7 @@ AugmentedSzczecin.controller('AddPoiController', ['$scope', 'apiService', functi
         $scope.newPoi = angular.toJson(poi);
         apiService.addPlace($scope.newPoi);
     };
+    $scope.days = [
+        'poniedziałek', 'wtorek', 'środa', 'czwartek', 'piątek', 'sobota', 'niedziela'
+    ]
 }]);
