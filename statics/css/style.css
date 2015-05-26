@@ -12,11 +12,61 @@ body {
 }
 
 .form-validation input.ng-invalid.ng-touched {
-    background-color: #fa787e;
+    border-color: #f25a5a;
 }
 
 .form-validation input.ng-valid.ng-touched {
-    background-color: #78fa89;
+    border-color: #348fd9;
+}
+
+.form-validation {
+	margin: 10px 10% 0 10%;
+}
+
+.form-validation input {
+	border-radius: 5px;
+	margin: 3px 0 3px;
+	border: #348fd9 solid 2px;
+	width: 100%;
+	height: 25px;
+}
+
+.form-validation select {
+	margin: 3px 0 3px;
+}
+
+#open {
+	width: 25%;
+}
+
+#close {
+	width: 25%;
+}
+
+#media {
+	border: none;
+}
+
+#location {
+	background-color: #b6b6b6;
+}
+
+#description {
+	width: 100%;
+	height: 100px;
+	overflow: scroll;
+	border-radius: 5px;
+	border: #348fd9 solid 2px;
+}
+
+#formbutton {
+	height: 40px;
+	width: 100%;
+	margin: 10% 5% 10% 0%;
+	background-color: #f25a5a;
+	border: hidden;
+	color: #ffffff;
+	font-size: 17px;
 }
 
 #rsmenu {
@@ -34,6 +84,7 @@ body {
     bottom: 0;
     left: 0;
     width: 25%;
+	overflow: scroll;
 }
 
 .menu {
