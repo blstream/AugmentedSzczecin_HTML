@@ -46,9 +46,14 @@
         <input type="url" id="wiki" ng-model="poi.wiki" ng-maxlength="100"><br/>
         <label for="fanpage">Fanpage</label><br/>
         <input type="url" id="fanpage" ng-model="poi.fanpage" ng-maxlength="100"><br/>
-        <label>Dni otwarcia:</label><br/>
-        <label ng-repeat="day in days">
-        <input type="checkbox">{{day}}<br/></label><br/>
+        <label>Dni otwarcia:<br/></label>
+        <label><input type="checkbox" ng-model="poi.opening.day.monday">poniedziałek</label><br/>
+        <label><input type="checkbox" ng-model="poi.opening.day.tuesday">wtorek</label><br/>
+        <label><input type="checkbox" ng-model="poi.opening.day.wednesday">środa</label><br/>
+        <label><input type="checkbox" ng-model="poi.opening.day.thursday">czwartek</label><br/>
+        <label><input type="checkbox" ng-model="poi.opening.day.friday">piątek</label><br/>
+        <label><input type="checkbox" ng-model="poi.opening.day.saturday">sobota</label><br/>
+        <label><input type="checkbox" ng-model="poi.opening.day.sunday">niedziela</label><br/>
         <label for="open">Od</label>
         <input type="time" id="open" ng-model="poi.opening.open" placeholder="GG:MM" min="00:00" max="23:59"><br/>
         <label for="close">Do</label>
