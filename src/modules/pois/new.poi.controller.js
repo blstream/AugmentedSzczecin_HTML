@@ -28,6 +28,9 @@ AugmentedSzczecin.controller('AddPoiController', ['$scope', '$filter', 'apiServi
         var closeMinutes = closeTime.getMinutes();
         $scope.newPoi.opening.close = closeHours + ":" + closeMinutes;
 
+        tagsList = $scope.newPoi.tags.split(', ');
+        $scope.newPoi.tags = tagsList;
+
         $scope.newPoi = angular.toJson(poi);
         /**
          * post new poi to server
