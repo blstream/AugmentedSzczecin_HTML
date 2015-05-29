@@ -16,11 +16,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
                     );
 
                     placeMarker(coordinates);
-                        poiMarker= new google.maps.Marker({
-                            position: coordinates,
-                            map: map
-                        });
-                        points.push(poiMarker);
+                        points.push(marker);
                 });
             /**
             * Clustering - creates one Poi from group of Pois
@@ -74,7 +70,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
      * @return {google}          - display Marker in selected place
      */    
     function placeMarker(location) {
-        var marker = new google.maps.Marker({
+         marker = new google.maps.Marker({
             position: location,
             map: map
         });
