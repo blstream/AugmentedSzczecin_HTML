@@ -44,7 +44,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         directionsDisplay = new google.maps.DirectionsRenderer();       
         /** Map options */
         var mapOptions = {
-            streetViewControl: true,
+            streetViewControl: false,
             mapTypeControl: true,
             panControl: false,
             zoom:16,
@@ -65,6 +65,28 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
     }
 
     /**
+     * switch view to AR
+     * get current position of map and set it as position of streetview
+     *
+     */
+    var panorama;
+    switchAR = function () {
+        panorama= map.getStreetView();
+        panorama.setPosition(map.getCenter());
+        panorama.setPov(({
+            heading: 265,
+            pitch: 0
+        }));
+        panorama.setVisible(true);
+    }
+    /**
+     * switch view to map 2D
+     */
+    switchMap = function () {
+        panorama.setVisible(false);
+    }
+
+    /**
      * Marker
      * @param  {object} location 
      * @return {google}          - display Marker in selected place
@@ -72,7 +94,8 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
     function placeMarker(location) {
          marker = new google.maps.Marker({
             position: location,
-            map: map
+            map: map,
+             icon: 'statics/images/public.png'
         });
          var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
          var home = new google.maps.Marker({
