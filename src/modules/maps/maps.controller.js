@@ -46,6 +46,13 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         var mapOptions = {
             streetViewControl: false,
             mapTypeControl: true,
+            mapTypeControlOptions: {
+                position: google.maps.ControlPosition.TOP_CENTER
+            },
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.SMALL,
+                position: google.maps.ControlPosition.TOP_CENTER
+            },
             panControl: false,
             zoom:16,
             center:mainPosition,
