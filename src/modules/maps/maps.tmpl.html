@@ -1,4 +1,5 @@
 <div id="map-canvas"></div>
+<img src="statics/images/logo_as.png" class="logo">
 <div class="topnav">
 	<ul>
 		<a href=""><li>Start</li></a>
@@ -12,13 +13,12 @@
     <form-template></form-template>
 </div>
 <div id="rsmenu" class="menu">
-    <button ng-click="calcRoute(start_route,endRoute)">Nawiguj</button>
-    <ul>
-        <li ng-repeat="poi in pois">
-            <h2>{{poi.singlePoi.name}}</h2>
-        </li>
-    </ul>
-</div>
+    <div>
+      <label id="poi name">{{singlePoi['name']}}</label><br/>
+      <label id="poi description">{{singlePoi['description']}}</label><br/>
+      <label id="poi location">{{singlePoi['location']['latitude']}}, {{singlePoi['location']['longitude']}}</label><br/>
+   </div>
+       <button ng-click="calcRoute(start_route,endRoute)" id="rsbutton">Nawiguj</button>
 <!-- changing view -->
 <div id="toggle">
 	<input type="image" src="/statics/images/map.png" onclick="switchMap()">

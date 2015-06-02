@@ -32,6 +32,15 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         .error(function(data, status, headers, config){
             $scope.$emit('apiError', data, status, headers, config);
         });
+    apiService.retrievePlace(0)
+        .success(function(data,status, headers, config) {
+          $scope.singlePoi = data;
+            var name= $scope.singlePoi['name']
+            console.log(name);
+            })
+          .error(function(data, status, headers, config){
+            $scope.$emit('apiError', data);
+          });
 
     var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
@@ -111,20 +120,8 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
 		  icon: iconBase + 'schools_maps.png'
 		});        
 
-		google.maps.event.addListener(marker, 'rightclick', function() {
+		google.maps.event.addListener(marker, 'click', function() {
             $scope.endRoute = marker.getPosition();
-        });
-
-        google.maps.event.addListener(marker, 'leftclick', function() {
-          apiService.retrievePlace(0)
-        	.success(function(data,status, headers, config) {
-          $scope.singlePoi = data;
-            var name= $scope.singlePoi['name']
-            console.log(name);
-       	 	})
-          .error(function(data, status, headers, config){
-            $scope.$emit('apiError', data);
-          });
         });
         /**
          * Right mouse button click sets a Marker on Map
