@@ -77,7 +77,16 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         };
         map = new google.maps.Map(mapHandler, mapOptions);
         directionsDisplay.setMap(map);
-		directionsDisplay.setOptions( { suppressMarkers: true } );
+		directionsDisplay.setOptions( { suppressMarkers: true });
+        /**
+         * Right mouse button click sets a Marker on Map
+         * @param  {[object} event) {placeMarker(event.latLng);}  - ppm sets Marker
+         * @return {[type]}        - set Marker in selected place
+         */
+        google.maps.event.addListener(map, 'rightclick', function(event) {
+            placeMarker(event.latLng);
+            var alert = window.confirm("Czy na pewno chcesz umieścić pinezkę tutaj?");
+        });
     }
 
     /**
@@ -123,16 +132,6 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
 		google.maps.event.addListener(marker, 'click', function() {
             $scope.endRoute = marker.getPosition();
         });
-        /**
-         * Right mouse button click sets a Marker on Map
-         * @param  {[object} event) {placeMarker(event.latLng);}  - ppm sets Marker
-         * @return {[type]}        - set Marker in selected place
-         */
-        google.maps.event.addListener(map, 'rightclick', function(event) {        
-          placeMarker(event.latLng);    
-            var alert = window.confirm("Czy na pewno chcesz umieścić pinezkę tutaj?");
-            alerts.totalOpenTime = 1;
-        }); 
 
         google.maps.event.addDomListener(marker, 'click', function() { 
         	if (document.getElementById("rsmenu").style.display = "none"){
