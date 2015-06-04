@@ -10,7 +10,7 @@
         <input type="text" id="tags" ng-model="poi.tags" ng-pattern="/^[a-zA-Z0-9ąćęłńóśżźĄĆĘŁŃÓŚŻŹ\,\ ]{1,30}$/" required> <br/>
         <label>Adres</label><br/>
         <label for="city">Miasto</label><br/>
-        <input id="city" type="text" ng-model="poi.address.city" ng-pattern="/^[a-zA-ZąćęłńóśżźĄĆĘŁŃÓŚŻŹ\ ]{1,30}$/" required> <br/>
+        <input id="city" type="text" ng-model="poi.address.city" ng-pattern="/^[a-zA-ZąćęłńóśżźĄĆĘŁŃÓŚŻŹ\-\ ]{1,30}$/" required> <br/>
         <label for="zipcode">Kod pocztowy</label><br/>
         <input id="zipcode" type="text" ng-model="poi.address.zipcode" ng-pattern="/^[0-9]{2}\-[0-9]{3}$/" required> <br/>
         <label for="street">Ulica</label><br/>
@@ -21,22 +21,23 @@
         <input type="text" id="houseNumber" ng-model="poi.address.houseNumber" ng-pattern="/^[a-zA-Z0-9ąćęłńóśżźĄĆĘŁŃÓŚŻŹ]{1,5}$/"><br/>
         <label for="category" >Kategoria</label><br/>
         <select id="category" ng-model="poi.category" required>
-            <option value="public">Miejsca publiczne</option>
-            <option value="business">Firmy i usługi</option>
-            <option value="events">Wydarzenia</option>
-            <option value="friends">Znajomi</option>
+            <option value="PLACE">Miejsca publiczne</option>
+            <option value="COMMERCIAL">Firmy i usługi</option>
+            <option value="EVENT">Wydarzenia</option>
+            <option value="PERSON">Znajomi</option>
         </select> <br/>
         <label for="subcategory">Podkategoria</label><br/>
         <select id="subcategory" ng-model="poi.subcategory">
-            <option value="school">szkoła</option>
-            <option value="hospital">szpital</option>
-            <option value="park">park</option>
-            <option value="monument">zabytek</option>
-            <option value="museum">muzeum</option>
-            <option value="office">urząd</option>
-            <option value="bus_station">dworzec</option>
-            <option value="post_office">poczta</option>
-            <option value="church">kościół</option>
+            <option value="SCHOOL">szkoła</option>
+            <option value="HOSPITAL">szpital</option>
+            <option value="PARK">park</option>
+            <option value="MONUMENT">zabytek</option>
+            <option value="MUSEUM">muzeum</option>
+            <option value="OFFICE">urząd</option>
+            <option value="BUS_STATION">dworzec autobusowy</option>
+            <option value="TRAIN_STATION">dworzec kolejowy</option>
+            <option value="POST_OFFICE">poczta</option>
+            <option value="CHURCH">kościół</option>
         </select> <br/>
         <label for="www">Strona www</label><br/>
         <input type="url" id="www" ng-model="poi.www" ng-maxlength="100"><br/>
