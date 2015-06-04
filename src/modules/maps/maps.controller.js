@@ -1,6 +1,6 @@
 AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($scope,apiService){
     $scope.pois = [];
-    
+    var markers = [];
 
     /** get all available pois from server and keep in context */
     apiService.getPlaces()
@@ -15,7 +15,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
                         entery['location']['longitude']
                     );
 
-                    placeMarker(coordinates);
+                    marker = placeMarker(coordinates);
                         points.push(marker);
                 });
             /**
@@ -117,7 +117,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
      * @return {google}          - display Marker in selected place
      */    
     function placeMarker(location) {
-         marker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
             position: location,
             map: map,
              icon: 'statics/images/public.png'
@@ -146,6 +146,8 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         	  document.getElementById("rsmenu").style.display = "none"
         	}
 		});
+
+        return marker;
     }
     google.maps.event.addDomListener(window, 'load', initialize(handler));
 
