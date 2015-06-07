@@ -183,3 +183,37 @@ body {
     text-decoration: none;
     color: #f25a5a;
 }
+.start {
+    padding: 10% 40%;
+    text-align: center;
+}
+#log_button {
+    height: 40px;
+    width: 150px;
+    border-color: #f25a5a;
+    background-color: #ffffff;
+    color: #f25a5a;
+    border-radius: 10px;
+    font-size: 17px;
+    margin: 10px 0 10px;
+}
+#register_button {
+    height: 40px;
+    width: 150px;
+    border-color: #348fd9;
+    background-color: #ffffff;
+    color: #348fd9;
+    border-radius: 10px;
+    font-size: 17px;
+    margin: 10px 0 10px;
+}
+.start img {
+    margin: 0 0 30%;
+}
+.start a {
+    text-decoration: none;
+    color: #348fd9;
+}
+.start a:hover {
+    color: #2b75b3;
+}
