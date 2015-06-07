@@ -35,6 +35,10 @@ AugmentedSzczecin.controller('AddPoiController', ['$scope', '$filter', 'apiServi
         /**
          * post new poi to server
          */
-        apiService.addPlace($scope.newPoi);
+        apiService.addPlace($scope.newPoi).success(function(data, status, headers, config){
+            alert('Z powodzeniem uda³o siê dodaæ punkt.');
+        }).error(function(data, status, headers, config){
+            $scope.$emit('apiError', data, status, headers, config);
+        });
     };
 }]);

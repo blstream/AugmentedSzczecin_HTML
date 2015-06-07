@@ -36,7 +36,6 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         .success(function(data,status, headers, config) {
           $scope.singlePoi = data;
             var name= $scope.singlePoi['name']
-            console.log(name);
             })
           .error(function(data, status, headers, config){
             $scope.$emit('apiError', data);
@@ -87,6 +86,14 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
             placeMarker(event.latLng);
             var alert = window.confirm("Czy na pewno chcesz umieścić pinezkę tutaj?");
         });
+        google.maps.event.addDomListener(map, 'click', function(event) {
+            if (document.getElementById("lsmenu").style.display = "none"){
+                document.getElementById("lsmenu").style.display = "block"
+            }
+            if (document.getElementById("rsmenu").style.display = "block"){
+                document.getElementById("rsmenu").style.display = "none"
+            }
+        });
     }
 
     /**
@@ -136,14 +143,6 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         google.maps.event.addDomListener(marker, 'click', function() { 
         	if (document.getElementById("rsmenu").style.display = "none"){
         	  document.getElementById("rsmenu").style.display = "block"
-        	}
-		});
-        google.maps.event.addDomListener(map, 'click', function() { 
-        	if (document.getElementById("lsmenu").style.display = "none"){
-        	  document.getElementById("lsmenu").style.display = "block"
-        	}
-        	if (document.getElementById("rsmenu").style.display = "block"){
-        	  document.getElementById("rsmenu").style.display = "none"
         	}
 		});
 
