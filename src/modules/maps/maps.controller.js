@@ -82,12 +82,18 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
          * @param  {[object} event) {placeMarker(event.latLng);}  - ppm sets Marker
          * @return {[type]}        - set Marker in selected place
          */
+    }
+
+    $scope.addPoiState = function() {
         google.maps.event.addListener(map, 'click', function(event) {
             var answer = window.confirm("Czy na pewno chcesz umieścić pinezkę tutaj?");
             if (answer) {
-                placeMarker(event.latLng);
+                var marker = placeMarker(event.latLng);
+                marker.draggable = true;
+                google.maps.event.addListener(marker,'drag',function(event) {
+                    $scope.coordinates = event.latLng;
+                });
                 $scope.coordinates = event.latLng;
-                console.log($scope.coordinates);
                 if (document.getElementById("lsmenu").style.display = "none"){
                     document.getElementById("lsmenu").style.display = "block"
                 }
@@ -95,7 +101,6 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
                     document.getElementById("rsmenu").style.display = "none"
                 }
             }
-
         });
     }
 
@@ -130,7 +135,8 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
         var marker = new google.maps.Marker({
             position: location,
             map: map,
-             icon: 'statics/images/public.png'
+             icon: 'statics/images/public.png',
+            draggable: false
         });
          var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
          var home = new google.maps.Marker({
@@ -154,7 +160,7 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
     google.maps.event.addDomListener(window, 'load', initialize(handler));
 
 
-$scope.start_route = new google.maps.LatLng(53.4252,14.5504);
+    $scope.start_route = new google.maps.LatLng(53.4252,14.5504);
 
     /**
      * Path finding
