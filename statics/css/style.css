@@ -217,3 +217,8 @@ body {
 .start a:hover {
     color: #2b75b3;
 }
+
+.about {
+    text-align: center;
+    margin: 5%;
+}

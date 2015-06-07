@@ -17,6 +17,10 @@ AugmentedSzczecin.config(function ($stateProvider, $urlRouterProvider){
           url: '/start',
           templateUrl: 'src/modules/start/start.tmpl.html'
       })
+      .state('about', {
+          url: '/about',
+          templateUrl: 'src/modules/about/about.tmpl.html'
+      })
 });
 
 AugmentedSzczecin.run(['$rootScope', '$state', 'ipCookie', '$window', function ($rootScope, $state, ipCookie, $window){
