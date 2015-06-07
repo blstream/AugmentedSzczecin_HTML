@@ -1,7 +1,7 @@
 <div ng-controller="AddPoiController" >
     <form class="form-validation">
         <label for="location">Współrzędne</label><br/>
-        <input id="location" type="text" readonly><br/>
+        <input id="location" type="text" readonly  ng-model="coordinates"><br/>
         <label for="name">Nazwa</label><br/>
         <input type="text" id="name" ng-model="poi.name" ng-maxlength="50" required><br />
         <label for="description">Opis</label><br/>

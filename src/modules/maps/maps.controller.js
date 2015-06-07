@@ -82,17 +82,20 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
          * @param  {[object} event) {placeMarker(event.latLng);}  - ppm sets Marker
          * @return {[type]}        - set Marker in selected place
          */
-        google.maps.event.addListener(map, 'rightclick', function(event) {
-            placeMarker(event.latLng);
-            var alert = window.confirm("Czy na pewno chcesz umieścić pinezkę tutaj?");
-        });
-        google.maps.event.addDomListener(map, 'click', function(event) {
-            if (document.getElementById("lsmenu").style.display = "none"){
-                document.getElementById("lsmenu").style.display = "block"
+        google.maps.event.addListener(map, 'click', function(event) {
+            var answer = window.confirm("Czy na pewno chcesz umieścić pinezkę tutaj?");
+            if (answer) {
+                placeMarker(event.latLng);
+                $scope.coordinates = event.latLng;
+                console.log($scope.coordinates);
+                if (document.getElementById("lsmenu").style.display = "none"){
+                    document.getElementById("lsmenu").style.display = "block"
+                }
+                if (document.getElementById("rsmenu").style.display = "block"){
+                    document.getElementById("rsmenu").style.display = "none"
+                }
             }
-            if (document.getElementById("rsmenu").style.display = "block"){
-                document.getElementById("rsmenu").style.display = "none"
-            }
+
         });
     }
 
