@@ -7,7 +7,7 @@
         <label for="password">Twoje hasło</label><br>
         <input type="password" id="password" class="input" ng-model="user.password" ng-minlength="6" required><br>
         <label for="confirm_password">Powtórz swoje hasło</label><br>
-        <input type="password" id="confirm_password" class="input" required>
+        <input type="password" id="confirm_password" class="input" ng-model="user.pswrd" ng-minlength="6" required>
         <input type="submit" class="redbutton" value="Zarejestruj" ng-click="signUp(user)">
     </form>
 </section>
