@@ -1,14 +1,14 @@
-<div class="background">
+<div ng-controller="RegistrationController" class="background">
 <img src="statics/images/logo_as.png">
 <section id="registration_section" class="center">
     <form id="registration">
         <label for="username">Podaj swój email</label><br>
-        <input type="email" id="username" class="input" required><br>
+        <input type="email" id="username" class="input" ng-model="user.email" required><br>
         <label for="password">Twoje hasło</label><br>
-        <input type="password" id="password" class="input" required><br>
-        <label for="rpt_password">Powtórz swoje hasło</label><br>
-        <input type="password" id="rpt_password" class="input" required>
-        <input type="button" class="redbutton" value="Zarejestruj">
+        <input type="password" id="password" class="input" ng-model="user.password" ng-minlength="6" required><br>
+        <label for="confirm_password">Powtórz swoje hasło</label><br>
+        <input type="password" id="confirm_password" class="input" required>
+        <input type="submit" class="redbutton" value="Zarejestruj" ng-click="signUp(user)">
     </form>
 </section>
 </div>

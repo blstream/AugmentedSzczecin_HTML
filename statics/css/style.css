@@ -235,7 +235,7 @@ body {
     border-radius: 7px;
     border-color: #2b75b3;
     text-align: center;
-    color: #cce6ff;
+    color: #2b75b3;
     font-size: 15px;
 }
 
@@ -270,3 +270,6 @@ body {
         width: 100%;
     }
 
+.center input.ng-invalid.ng-touched {
+    border-color: #f25a5a;
+}
