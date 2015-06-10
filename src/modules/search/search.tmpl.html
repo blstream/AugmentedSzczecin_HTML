@@ -1,0 +1,26 @@
+<img src="statics/images/logo_as.png" class="logo">
+<div class="topnav">
+    <ul>
+        <a ui-sref="start"><li>Start</li></a>
+        <a href=""><li>W pobliżu</li></a>
+        <a ui-sref="search"><li>Szukaj</li></a>
+        <a ng-click="addPoiState()"><li>Dodaj POI</li></a>
+        <a ui-sref="about"><li>Augmented Szczecin</li></a>
+    </ul>
+</div>
+<div id="search">
+    <label for="search-name">Nazwa</label><br/>
+    <input id="search-name" type="text" ng-model="search.name"><br/>
+    <label for="search-tag">Tag</label><br/>
+    <input id="search-tag" type="text" ng-model="search.tag"><br/>
+    <label for="search-street">Ulica</label><br/>
+    <input id="search-street" type="text" ng-model="search.street"><br/>
+    <label for="search-actual-open">Aktualnie Otwarte</label>
+    <input id="search-actual-open" type="checkbox" ng-model="search.actualOpen"><br/>
+    <select id="search-paid" ng-model="search.paid">
+        <option value="true">płatne</option>
+        <option value="false">bezpłatne</option>
+    </select><br/>
+    <input id="search-submit" type="submit" ng-click="" value="Szukaj" />
+</div>
+

@@ -91,7 +91,8 @@ AugmentedSzczecin.controller('MapController',['$scope', 'apiService', function($
                 var marker = placeMarker(event.latLng);
                 marker.draggable = true;
                 google.maps.event.addListener(marker,'drag',function(event) {
-                    $scope.coordinates = event.latLng;
+                    //$scope.coordinates = event.latLng;
+                    document.getElementById("location").value = event.latLng;
                 });
                 $scope.coordinates = event.latLng;
                 if (document.getElementById("lsmenu").style.display = "none"){
