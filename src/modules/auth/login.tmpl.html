@@ -1,9 +1,12 @@
-<section id="login_section">
+<div class="background">
+<img src="statics/images/logo_as.png">
+<section id="login_section" class="center">
   <form id="login">
-    <label for="email">email</label>
-    <input id="email" ng-model="user.email">
-    <label for="password">password</label>
-    <input id="password" ng-model="user.password">
-    <input type="button" value="login" id="login_action" ng-click="loginAction(user)">
+    <label for="email">email</label><br>
+    <input id="email" class="input" ng-model="user.email"><br>
+    <label for="password">password</label><br>
+    <input id="password" class="input"  ng-model="user.password" type="password"><br>
+    <input type="button" value="Zaloguj się" id="login_action" class="redbutton" ng-click="loginAction(user)">
   </form>
 </section>
+</div>
