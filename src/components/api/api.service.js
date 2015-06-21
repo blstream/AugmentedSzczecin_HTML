@@ -6,7 +6,7 @@
  */
 AugmentedSzczecin.service('apiService', function($http){
     var that = this, // we need global scope of this servie in different places
-        apiLocation= 'http://private-anon-1813a5f7c-patronage2015.apiary-mock.com/';
+        apiLocation= 'http://private-anon-89a39c7cb-patronage2015.apiary-mock.com/';
 
     //uri for all events
     var eventsUri = apiLocation + 'events';
